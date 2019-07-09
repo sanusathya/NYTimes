@@ -21,6 +21,7 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "All Sections"
         loadMostViewedArticles(section: "all-sections", timePeriod: "7")
     }
     
@@ -31,5 +32,18 @@ class MasterViewController: UITableViewController {
             }.catch { error in
                 print("Error \(error.localizedDescription)")
         }
+    }
+}
+
+extension MasterViewController {
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return articles?.count ?? 0
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = ArticleTableViewCell.dequeueReusableCell(in: tableView, indexPath: indexPath)
+        cell.article = articles?[indexPath.row]
+        return cell
     }
 }

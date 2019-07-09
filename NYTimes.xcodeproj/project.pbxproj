@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C3EE6C922D4A72D007042FA /* DateFormatterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3EE6C822D4A72D007042FA /* DateFormatterExtensions.swift */; };
+		2C3EE6CB22D4A8F4007042FA /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3EE6CA22D4A8F4007042FA /* UIImageViewExtensions.swift */; };
 		2C835F1522D3E5CC00BA4F3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C835F1422D3E5CC00BA4F3E /* Assets.xcassets */; };
 		2C835F1A22D3E5FD00BA4F3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C835F1622D3E5FD00BA4F3E /* LaunchScreen.storyboard */; };
 		2C835F1B22D3E5FD00BA4F3E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C835F1822D3E5FD00BA4F3E /* Main.storyboard */; };
@@ -41,6 +43,8 @@
 
 /* Begin PBXFileReference section */
 		19157750A1F5C547EAEE5918 /* Pods-NYTimes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NYTimes.release.xcconfig"; path = "Target Support Files/Pods-NYTimes/Pods-NYTimes.release.xcconfig"; sourceTree = "<group>"; };
+		2C3EE6C822D4A72D007042FA /* DateFormatterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtensions.swift; sourceTree = "<group>"; };
+		2C3EE6CA22D4A8F4007042FA /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		2C835F1222D3E5A700BA4F3E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C835F1422D3E5CC00BA4F3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C835F1722D3E5FD00BA4F3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -174,6 +178,8 @@
 			isa = PBXGroup;
 			children = (
 				2C835F3722D3F10000BA4F3E /* UIResponderExtensions.swift */,
+				2C3EE6C822D4A72D007042FA /* DateFormatterExtensions.swift */,
+				2C3EE6CA22D4A8F4007042FA /* UIImageViewExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -414,6 +420,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C835F2922D3EBB800BA4F3E /* MasterViewController.swift in Sources */,
+				2C3EE6C922D4A72D007042FA /* DateFormatterExtensions.swift in Sources */,
+				2C3EE6CB22D4A8F4007042FA /* UIImageViewExtensions.swift in Sources */,
 				2C835F2122D3EA3000BA4F3E /* MappableObject.swift in Sources */,
 				2C835F3C22D3F5F800BA4F3E /* AlamofireRequestExtensions.swift in Sources */,
 				2C835F3122D3EE1200BA4F3E /* Article.swift in Sources */,

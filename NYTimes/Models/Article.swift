@@ -18,9 +18,17 @@ class Article: MappableObject {
     var type: String?
     var title: String?
     var abstract: String?
-    var publishedDate: Date?
+    var publishedDate: String?
     var source: String?
+    var media: [Media]?
     
+    var thumbnail: URL? {
+        guard let media = media?.first else { return nil }
+        if let mediaData = media.mediaMetaData?.first {
+            return mediaData.url
+        }
+        return nil
+    }
     
     override func mapping(map: Map) {
         super.mapping(map: map)
@@ -29,11 +37,13 @@ class Article: MappableObject {
         url             <- (map["url"], URLTransform())
         adx_keywords    <- map["adx_keywords"]
         section         <- map["section"]
-        byline          <- map["adx_keywords"]
+        byline          <- map["byline"]
         type            <- map["type"]
         title           <- map["title"]
         abstract        <- map["abstract"]
+        publishedDate   <- map["published_date"]
         source          <- map["source"]
+        media           <- map["media"]
     }
 }
 
@@ -55,5 +65,33 @@ extension Article {
             articles        <- map["results"]
         }
     }
+}
+
+extension Article {
     
+    class Media: MappableObject {
+        var type: String?
+        var subType: String?
+        var mediaMetaData: [MediaMetaData]?
+        
+        override func mapping(map: Map) {
+            super.mapping(map: map)
+            
+            type          <- map["status"]
+            subType       <- map["copyright"]
+            mediaMetaData <- map["media-metadata"]
+        }
+    }
+    
+    class MediaMetaData: MappableObject {
+        var url: URL?
+        var format: String?
+        
+        override func mapping(map: Map) {
+            super.mapping(map: map)
+            
+            url          <- (map["url"], URLTransform())
+            format       <-  map["format"]
+        }
+    }
 }
