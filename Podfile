@@ -5,6 +5,13 @@ use_frameworks!
 
 def pods
   pod 'Alamofire'
+  pod 'SwiftMessages'
+  pod 'ObjectMapper'
+  pod 'AlamofireImage'
+  pod 'AlamofireObjectMapper'
+  pod 'PromiseKit'
+  pod 'SwiftPullToRefresh'
+  pod 'SwiftyBeaver'
 end
 
 target 'NYTimes' do

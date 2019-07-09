@@ -11,24 +11,34 @@ import XCTest
 
 class NYTimesTests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testLoadMostViewedAPIForAllSections() {
+        
+        let expect = expectation(description: "Status returned OK")
+        
+        let section = "all-sections"
+        let timePeriod = "7"
+        let offset = 0
+        
+        MostViewedAPI.fetchMostViewedArticles(section: section, timePeriod: timePeriod, offset: offset).done { (sectionsResponse) in
+            XCTAssertEqual(sectionsResponse?.status, "OK")
+            expect.fulfill()
         }
+        wait(for: [expect], timeout: 10.0)
+    }
+    
+    func testLoadMostViewedAPIForArts() {
+        
+        let expect = expectation(description: "Status returned OK")
+        
+        let section = "Arts"
+        let timePeriod = "7"
+        let offset = 0
+        
+        MostViewedAPI.fetchMostViewedArticles(section: section, timePeriod: timePeriod, offset: offset).done { (sectionsResponse) in
+            XCTAssertEqual(sectionsResponse?.status, "OK")
+            expect.fulfill()
+        }
+        wait(for: [expect], timeout: 10.0)
     }
 
 }
