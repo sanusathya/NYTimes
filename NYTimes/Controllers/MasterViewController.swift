@@ -94,7 +94,7 @@ class MasterViewController: UITableViewController {
     
     @objc func buttonActionFilter() {
         
-        let alertController = UIAlertController(title: "Please select a filter", message: "", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: nil, message: "Please select a filter", preferredStyle: .actionSheet)
         let alertAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in }
         alertController.addAction(alertAction)
         for period in TimePeriod.allCases {
