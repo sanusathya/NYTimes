@@ -18,14 +18,14 @@ struct NYError: ErrorProtocol {
     
     var title: String?
     var code: Int
-    var errorDescription: String? { return _description }
-    var failureReason: String? { return _description }
+    var errorDescription: String? { return description }
+    var failureReason: String? { return description }
     
-    private var _description: String
+    private var description: String
     
     init(title: String? = nil, description: String, code: Int) {
         self.title = title ?? "Error"
-        self._description = description
+        self.description = description
         self.code = code
     }
 }

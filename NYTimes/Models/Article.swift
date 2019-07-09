@@ -95,3 +95,9 @@ extension Article {
         }
     }
 }
+
+extension Article: Searchable {
+    func passesSearch(for key: String) -> Bool {
+        return title?.localizedCaseInsensitiveContains(key) ?? false
+    }
+}

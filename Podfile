@@ -12,6 +12,7 @@ def pods
   pod 'PromiseKit'
   pod 'SwiftPullToRefresh'
   pod 'SwiftyBeaver'
+  pod 'NVActivityIndicatorView'
 end
 
 target 'NYTimes' do
