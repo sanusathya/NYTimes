@@ -10,7 +10,7 @@ import UIKit
 
 class MasterViewController: UITableViewController {
     
-    // need to do service call & reload data while changing the article types
+    //reload data while changing the articles
     private var articles: [Article]? {
         didSet {
             tableView.reloadData()
@@ -31,6 +31,7 @@ class MasterViewController: UITableViewController {
         }
     }
     
+    // need to do service call & reload data while changing the article type
     private var section = ArticleTypeViewController.Section.all {
         didSet {
             loadMostViewedArticles()
@@ -40,7 +41,6 @@ class MasterViewController: UITableViewController {
     private var offset = 0
     private let searchController = UISearchController(searchResultsController: nil)
     private var searchBarVisible = false
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +70,7 @@ class MasterViewController: UITableViewController {
         tableView.tableFooterView = UIView(frame: .zero)
     }
     
-    func loadMostViewedArticles() {
+    private func loadMostViewedArticles() {
         
         LoadingIndicator.shared.show()
         MostViewedAPI.fetchMostViewedArticles(section: section.param, timePeriod: timePeriod.param, offset:offset).done { [weak self] (sectionsResponse) in
@@ -130,7 +130,6 @@ extension MasterViewController {
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
         guard let detailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: DetailViewController.identifier) as? DetailViewController else { return }
         detailViewController.article = articles?[indexPath.row]
         navigationController?.pushViewController(detailViewController, animated: true)
@@ -163,8 +162,8 @@ extension MasterViewController {
             case .day: return "1"
             case .week: return "7"
             case .month: return "30"
+            }
         }
-    }
     }
 }
 
