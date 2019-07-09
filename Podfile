@@ -4,15 +4,13 @@ inhibit_all_warnings!
 use_frameworks!
 
 def pods
-  pod 'Alamofire'
-  pod 'SwiftMessages'
-  pod 'ObjectMapper'
-  pod 'AlamofireImage'
-  pod 'AlamofireObjectMapper'
-  pod 'PromiseKit'
-  pod 'SwiftPullToRefresh'
-  pod 'SwiftyBeaver'
-  pod 'NVActivityIndicatorView'
+  pod 'Alamofire', '4.8.2'
+  pod 'ObjectMapper', '3.4.2'
+  pod 'AlamofireImage', '3.5.0'
+  pod 'AlamofireObjectMapper', '5.2.0'
+  pod 'PromiseKit', '6.7.1'
+  pod 'SwiftyBeaver', '1.7.0'
+  pod 'NVActivityIndicatorView', '4.7.0'
 end
 
 target 'NYTimes' do

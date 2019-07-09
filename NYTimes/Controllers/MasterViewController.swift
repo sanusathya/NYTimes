@@ -10,23 +10,27 @@ import UIKit
 
 class MasterViewController: UITableViewController {
     
+    // need to do service call & reload data while changing the article types
     private var articles: [Article]? {
         didSet {
             tableView.reloadData()
         }
     }
     
+    // the entire articles list
     private var fullArticles: [Article]? {
         didSet {
             articles = fullArticles
         }
     }
     
+    // need to do service call & reload data while changing the article time peiod
     private var timePeriod = TimePeriod.week {
         didSet {
             loadMostViewedArticles()
         }
     }
+    
     private var section = ArticleTypeViewController.Section.all {
         didSet {
             loadMostViewedArticles()
@@ -125,6 +129,7 @@ extension MasterViewController {
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         
         guard let detailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: DetailViewController.identifier) as? DetailViewController else { return }
         detailViewController.article = articles?[indexPath.row]
