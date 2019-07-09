@@ -14,11 +14,13 @@ class LoadingIndicator: UIViewController, NVActivityIndicatorViewable {
     
     static let shared = LoadingIndicator()
     
+    // show
     func show() {
         let size = CGSize(width: 50, height: 50)
         startAnimating(size, type: .ballClipRotateMultiple, color: .orange, backgroundColor: .clear)
     }
     
+    // dismiss
     func dismiss() {
         stopAnimating()
         activityView?.removeFromSuperview()

@@ -15,11 +15,11 @@ class NYTimesTests: XCTestCase {
         
         let expect = expectation(description: "Status returned OK")
         
-        let section = "all-sections"
-        let timePeriod = "7"
+        let section = ArticleTypeViewController.Section.all
+        let timePeriod = MasterViewController.TimePeriod.week
         let offset = 0
         
-        MostViewedAPI.fetchMostViewedArticles(section: section, timePeriod: timePeriod, offset: offset).done { (sectionsResponse) in
+        MostViewedAPI.fetchMostViewedArticles(section: section.param, timePeriod: timePeriod.param, offset: offset).done { (sectionsResponse) in
             XCTAssertEqual(sectionsResponse?.status, "OK")
             expect.fulfill()
         }
@@ -30,11 +30,11 @@ class NYTimesTests: XCTestCase {
         
         let expect = expectation(description: "Status returned OK")
         
-        let section = "Arts"
-        let timePeriod = "7"
+        let section = ArticleTypeViewController.Section.arts
+        let timePeriod = MasterViewController.TimePeriod.week
         let offset = 0
         
-        MostViewedAPI.fetchMostViewedArticles(section: section, timePeriod: timePeriod, offset: offset).done { (sectionsResponse) in
+        MostViewedAPI.fetchMostViewedArticles(section: section.param, timePeriod: timePeriod.param, offset: offset).done { (sectionsResponse) in
             XCTAssertEqual(sectionsResponse?.status, "OK")
             expect.fulfill()
         }

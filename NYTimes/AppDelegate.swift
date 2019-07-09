@@ -18,7 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // add console destination for printing logs
         Log.addDestination(ConsoleDestination())
+        
+        // TODO:
+        // we should apply app theming here.
+        
         
         return true
     }
