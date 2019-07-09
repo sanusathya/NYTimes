@@ -30,6 +30,14 @@ class Article: MappableObject {
         return nil
     }
     
+    var detailedThumbnail: URL? {
+        guard let media = media?.first else { return nil }
+        if let jumboMediaMetaData = media.mediaMetaData?.filter({$0.format == "superJumbo"}), let jumbo = jumboMediaMetaData.first {
+            return jumbo.url
+        }
+        return nil
+    }
+    
     override func mapping(map: Map) {
         super.mapping(map: map)
         

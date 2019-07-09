@@ -37,6 +37,7 @@ class MasterViewController: UITableViewController {
     private let searchController = UISearchController(searchResultsController: nil)
     private var searchBarVisible = false
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -123,6 +124,12 @@ extension MasterViewController {
         cell.article = articles?[indexPath.row]
         return cell
     }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard let detailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: DetailViewController.identifier) as? DetailViewController else { return }
+        detailViewController.article = articles?[indexPath.row]
+        navigationController?.pushViewController(detailViewController, animated: true)
+    }
 }
 
 extension MasterViewController: UISearchResultsUpdating {
@@ -155,3 +162,5 @@ extension MasterViewController {
     }
     }
 }
+
+
