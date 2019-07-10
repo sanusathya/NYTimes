@@ -40,7 +40,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="date" translatesAutoresizingMaskIntoConstraints="NO" id="HZt-SP-9Ds">
-                                            <rect key="frame" x="120" y="145" width="25" height="25"/>
+                                            <rect key="frame" x="120" y="145" width="25" height="25.000000000000114"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="2vI-SD-6mi"/>
                                                 <constraint firstAttribute="width" constant="25" id="cJQ-cD-INm"/>
@@ -90,7 +90,28 @@
                             <outlet property="delegate" destination="T4U-sN-c81" id="8Fn-oY-SFc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="r53-ej-fbw"/>
+                    <navigationItem key="navigationItem" id="r53-ej-fbw">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="Oyp-3y-8zJ">
+                            <connections>
+                                <segue destination="qwc-tw-du5" kind="presentation" identifier="menu" id="BEZ-cd-ziH"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="more" id="9QD-HR-VMa">
+                                <connections>
+                                    <action selector="buttonActionMore:" destination="T4U-sN-c81" id="0g7-aa-HbX"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="search" id="zya-3j-20e">
+                                <connections>
+                                    <action selector="buttonActionSearch:" destination="T4U-sN-c81" id="6LY-0e-HR4"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="Ghe-vF-xTS" kind="show" identifier="detail" id="xE2-1W-Aoz"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jVd-wO-fZX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -105,10 +126,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K4P-og-28e">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="auh-Wi-2zV">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5vK-v7-Rw2" userLabel="Title">
                                                 <rect key="frame" x="20" y="20" width="374" height="29"/>
@@ -140,6 +161,19 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlD-Vh-OQa">
+                                                <rect key="frame" x="15" y="349" width="384" height="40"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="XXN-ea-IhS"/>
+                                                </constraints>
+                                                <state key="normal" title="View More Details">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="buttonActionViewMore:" destination="Ghe-vF-xTS" eventType="touchUpInside" id="jlY-cS-UTG"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -151,13 +185,16 @@
                                             <constraint firstItem="hL3-I9-8oV" firstAttribute="leading" secondItem="auh-Wi-2zV" secondAttribute="leading" constant="20" id="PzD-lM-QHw"/>
                                             <constraint firstItem="308-eI-edq" firstAttribute="leading" secondItem="auh-Wi-2zV" secondAttribute="leading" constant="20" id="VHZ-RM-Jte"/>
                                             <constraint firstItem="5vK-v7-Rw2" firstAttribute="leading" secondItem="auh-Wi-2zV" secondAttribute="leading" constant="20" id="WXG-Sd-B0l"/>
+                                            <constraint firstItem="hlD-Vh-OQa" firstAttribute="leading" secondItem="auh-Wi-2zV" secondAttribute="leading" constant="15" id="Zbj-kF-ejt"/>
                                             <constraint firstAttribute="trailing" secondItem="hL3-I9-8oV" secondAttribute="trailing" constant="20" id="amY-jp-IF8"/>
+                                            <constraint firstAttribute="trailing" secondItem="hlD-Vh-OQa" secondAttribute="trailing" constant="15" id="eaQ-xr-7DM"/>
                                             <constraint firstItem="Wgr-2j-3pa" firstAttribute="top" secondItem="R54-IG-jUg" secondAttribute="bottom" constant="20" id="efR-iB-b0k"/>
                                             <constraint firstItem="R54-IG-jUg" firstAttribute="top" secondItem="hL3-I9-8oV" secondAttribute="bottom" constant="20" id="eq3-hv-6Lp"/>
                                             <constraint firstAttribute="trailing" secondItem="5vK-v7-Rw2" secondAttribute="trailing" constant="20" id="f8C-xD-Xsv"/>
                                             <constraint firstAttribute="trailing" secondItem="R54-IG-jUg" secondAttribute="trailing" constant="20" id="fi5-35-hBL"/>
                                             <constraint firstItem="R54-IG-jUg" firstAttribute="leading" secondItem="auh-Wi-2zV" secondAttribute="leading" constant="20" id="lsV-P9-y74"/>
                                             <constraint firstItem="5vK-v7-Rw2" firstAttribute="top" secondItem="auh-Wi-2zV" secondAttribute="top" constant="20" id="sBJ-gP-ZoY"/>
+                                            <constraint firstItem="hlD-Vh-OQa" firstAttribute="top" secondItem="308-eI-edq" secondAttribute="bottom" constant="20" id="wl6-pE-xWA"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -201,7 +238,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xA7-qV-jA7">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SectionsTableViewCell" id="mei-ga-rBg" customClass="SectionsTableViewCell" customModule="NYTimes" customModuleProvider="target">
@@ -245,13 +282,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="osn-RG-XNb"/>
                     </view>
+                    <navigationItem key="navigationItem" id="PJX-Zk-KUH"/>
                     <connections>
                         <outlet property="tableView" destination="xA7-qV-jA7" id="IAF-Xv-6HH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fl2-09-78o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1078" y="856"/>
+            <point key="canvasLocation" x="1631.8840579710147" y="874.55357142857144"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="EGF-l7-rQn">
@@ -271,8 +309,28 @@
             </objects>
             <point key="canvasLocation" x="-188.40579710144928" y="192.85714285714286"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="wdd-Ra-uHj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qwc-tw-du5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VPa-zt-E4p">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="TD3-u7-Sg4" kind="relationship" relationship="rootViewController" id="okf-NJ-LTO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2dt-9N-1R2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="721.73913043478262" y="874.55357142857144"/>
+        </scene>
     </scenes>
     <resources>
         <image name="date" width="357" height="389"/>
+        <image name="menu" width="36" height="36"/>
+        <image name="more" width="7.5" height="24"/>
     </resources>
 </document>

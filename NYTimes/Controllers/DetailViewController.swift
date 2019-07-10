@@ -33,4 +33,8 @@ class DetailViewController: UIViewController {
         imageViewLargeThumbnail?.setImage(with: article.thumbnail)
     }
     
+    @IBAction func buttonActionViewMore(_ sender: Any) {
+        guard let article = article, let urlString = article.url, let url = URL(string: urlString)  else { return }
+        UIApplication.shared.open(url)
+    }
 }

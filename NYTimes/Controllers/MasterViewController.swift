@@ -53,13 +53,6 @@ class MasterViewController: UITableViewController {
         
         title = section.name
         
-        let leftBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(buttonActionMenu))
-        navigationItem.leftBarButtonItem = leftBarButton
-        
-        let rightBarButtonFilter = UIBarButtonItem(image: #imageLiteral(resourceName: "more"), style: .plain, target: self, action: #selector(buttonActionFilter))
-        let rightBarButtonSearch = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(buttonActionSearch))
-        navigationItem.rightBarButtonItems = [rightBarButtonFilter, rightBarButtonSearch]
-        
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
@@ -84,20 +77,7 @@ class MasterViewController: UITableViewController {
         }
     }
     
-    @objc func buttonActionMenu() {
-        
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let articleTypeViewController = mainStoryboard.instantiateViewController(withIdentifier: ArticleTypeViewController.identifier) as? ArticleTypeViewController else { return }
-        articleTypeViewController.selectionClosure = { [weak self] (section) in
-            guard let welf = self else { return }
-            welf.title = section.name
-            welf.section = section
-        }
-        let presentNavigationController = UINavigationController(rootViewController: articleTypeViewController)
-        navigationController?.present(presentNavigationController, animated: true, completion: nil)
-    }
-    
-    @objc func buttonActionFilter() {
+    @IBAction func buttonActionMore(_ sender: Any) {
         
         let alertController = UIAlertController(title: nil, message: "Please select a filter", preferredStyle: .actionSheet)
         let alertAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -111,10 +91,31 @@ class MasterViewController: UITableViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    @objc func buttonActionSearch() {
+    @IBAction func buttonActionSearch(_ sender: Any) {
         searchBarVisible.toggle()
         tableView.tableHeaderView = searchBarVisible ? searchController.searchBar : nil
         tableView.reloadData()
+    }
+}
+
+extension MasterViewController {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        switch segue.identifier ?? "" {
+        case "menu":
+            guard let menuNavigationController = segue.destination as? UINavigationController,
+                  let  articleTypeViewController = menuNavigationController.viewControllers.first as? ArticleTypeViewController else { return }
+            articleTypeViewController.selectionClosure = { [weak self] (section) in
+                guard let welf = self else { return }
+                welf.title = section.name
+                welf.section = section
+            }
+        case "detail":
+            guard let detailViewController = segue.destination as? DetailViewController else { return }
+            detailViewController.article = sender as? Article
+        default: break
+        }
     }
 }
 
@@ -129,11 +130,9 @@ extension MasterViewController {
         cell.article = articles?[indexPath.row]
         return cell
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        guard let detailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: DetailViewController.identifier) as? DetailViewController else { return }
-        detailViewController.article = articles?[indexPath.row]
-        navigationController?.pushViewController(detailViewController, animated: true)
+        performSegue(withIdentifier: "detail", sender: articles?[indexPath.row])
     }
 }
 
