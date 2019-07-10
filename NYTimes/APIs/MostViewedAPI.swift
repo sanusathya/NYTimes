@@ -32,7 +32,7 @@ extension MostViewedAPI {
         }
         
         var defaultParameters: Parameters? {
-            return ["api-key":"iViGaASPmx0cyUUEZ0KCrKGJARFVedAu"]
+            return ["api-key": "iViGaASPmx0cyUUEZ0KCrKGJARFVedAu"]
         }
     }
 }
@@ -44,7 +44,7 @@ extension MostViewedAPI {
         
         return Promise<Article.SectionsResponse?> { resolver in
             
-            Router.mostViewed(section: section, timePeriod: timePeriod, offset: offset).request{ ( response: DataResponse<Article.SectionsResponse>) in
+            Router.mostViewed(section: section, timePeriod: timePeriod, offset: offset).request {(response: DataResponse<Article.SectionsResponse>) in
                 
                 guard response.error == nil else {
                     resolver.reject(response.error!)
@@ -56,4 +56,3 @@ extension MostViewedAPI {
         }
     }
 }
-

@@ -11,7 +11,7 @@ import Foundation
 class Article: Codable {
 
     var id: Int?
-    var url : String?
+    var url: String?
     var adxKeywords: String?
     var section: String?
     var byline: String?
@@ -35,7 +35,6 @@ class Article: Codable {
         case source
         case media
     }
-
     
     var thumbnail: URL? {
         guard let media = media?.first else { return nil }
@@ -53,7 +52,6 @@ class Article: Codable {
         return nil
     }
 }
-
 
 extension Article {
     

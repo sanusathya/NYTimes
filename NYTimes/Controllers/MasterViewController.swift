@@ -73,7 +73,7 @@ class MasterViewController: UITableViewController {
     private func loadMostViewedArticles() {
         
         LoadingIndicator.shared.show()
-        MostViewedAPI.fetchMostViewedArticles(section: section.param, timePeriod: timePeriod.param, offset:offset).done { [weak self] (sectionsResponse) in
+        MostViewedAPI.fetchMostViewedArticles(section: section.param, timePeriod: timePeriod.param, offset: offset).done { [weak self] (sectionsResponse) in
             guard let welf = self else { return }
             welf.fullArticles = sectionsResponse?.articles
             welf.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
@@ -86,7 +86,8 @@ class MasterViewController: UITableViewController {
     
     @objc func buttonActionMenu() {
         
-        guard let articleTypeViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ArticleTypeViewController.identifier) as? ArticleTypeViewController else { return }
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let articleTypeViewController = mainStoryboard.instantiateViewController(withIdentifier: ArticleTypeViewController.identifier) as? ArticleTypeViewController else { return }
         articleTypeViewController.selectionClosure = { [weak self] (section) in
             guard let welf = self else { return }
             welf.title = section.name
@@ -99,10 +100,10 @@ class MasterViewController: UITableViewController {
     @objc func buttonActionFilter() {
         
         let alertController = UIAlertController(title: nil, message: "Please select a filter", preferredStyle: .actionSheet)
-        let alertAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in }
+        let alertAction = UIAlertAction(title: "Cancel", style: .cancel)
         alertController.addAction(alertAction)
         for period in TimePeriod.allCases {
-            let periodAlertAction = UIAlertAction(title: period.name, style: .default) { [weak self] (action) in
+            let periodAlertAction = UIAlertAction(title: period.name, style: .default) { [weak self] (_) in
                 self?.timePeriod = period
             }
             alertController.addAction(periodAlertAction)
@@ -143,7 +144,7 @@ extension MasterViewController: UISearchResultsUpdating {
             articles = fullArticles
             return
         }
-        articles = fullArticles?.filter{$0.passesSearch(for: searchText)}
+        articles = fullArticles?.filter {$0.passesSearch(for: searchText)}
     }
 }
 
@@ -166,5 +167,3 @@ extension MasterViewController {
         }
     }
 }
-
-

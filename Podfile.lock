@@ -14,6 +14,7 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (6.7.1):
     - PromiseKit/CorePromise
+  - SwiftLint (0.33.1)
   - SwiftyBeaver (1.7.0)
 
 DEPENDENCIES:
@@ -21,6 +22,7 @@ DEPENDENCIES:
   - AlamofireImage (= 3.5.0)
   - NVActivityIndicatorView (= 4.7.0)
   - PromiseKit (= 6.7.1)
+  - SwiftLint
   - SwiftyBeaver (= 1.7.0)
 
 SPEC REPOS:
@@ -29,6 +31,7 @@ SPEC REPOS:
     - AlamofireImage
     - NVActivityIndicatorView
     - PromiseKit
+    - SwiftLint
     - SwiftyBeaver
 
 SPEC CHECKSUMS:
@@ -36,8 +39,9 @@ SPEC CHECKSUMS:
   AlamofireImage: 1aea346f4dda2f6c67622fa5a89fcbb80d79cc16
   NVActivityIndicatorView: b19ddab2576f805cbe0fb2306cba3476e09a1dea
   PromiseKit: ef376fb8b4e92edfeb66bd403b983eaa07fbde0c
+  SwiftLint: 9fc1143bbacec37f94994a7d0d2a85b2154b6294
   SwiftyBeaver: 4cc0080d2e23f980652e28978db11a5c9da39165
 
-PODFILE CHECKSUM: 737bc0d377250642dccb50e9c32f9b72a92b6971
+PODFILE CHECKSUM: 3e014d4d6ce5d3b3420ac6d82c1e0d5048eebecc
 
 COCOAPODS: 1.7.3

@@ -11,7 +11,7 @@ import UIKit
 class ArticleTypeViewController: UIViewController {
     
     var sections: Section = .all {
-        didSet{
+        didSet {
             tableView?.reloadData()
         }
     }

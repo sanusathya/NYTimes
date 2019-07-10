@@ -65,10 +65,9 @@ public extension Alamofire.DataRequest {
     }
 }
 
-
 public extension Alamofire.DataRequest {
     
-    private static func DecodableObjectSerializer<T: Decodable>(_ keyPath: String?, _ decoder: JSONDecoder) -> DataResponseSerializer<T> {
+    private static func decodableObjectSerializer<T: Decodable>(_ keyPath: String?, _ decoder: JSONDecoder) -> DataResponseSerializer<T> {
         return DataResponseSerializer { _, response, data, error in
             if let error = error {
                 return .failure(error)
@@ -91,8 +90,7 @@ public extension Alamofire.DataRequest {
             do {
                 let object = try decoder.decode(T.self, from: data)
                 return .success(object)
-            }
-            catch {
+            } catch {
                 return .failure(error)
             }
         case .failure(let error): return .failure(error)
@@ -112,19 +110,16 @@ public extension Alamofire.DataRequest {
                     let data = try JSONSerialization.data(withJSONObject: nestedJson)
                     let object = try decoder.decode(T.self, from: data)
                     return .success(object)
-                }
-                catch {
+                } catch {
                     return .failure(error)
                 }
-            }
-            else {
+            } else {
                 return .failure(AlamofireDecodableError.invalidKeyPath)
             }
         case .failure(let error): return .failure(error)
         }
     }
-    
-    
+
     /// Adds a handler to be called once the request has finished.
     
     /// - parameter queue:             The queue on which the completion handler is dispatched.
@@ -136,10 +131,9 @@ public extension Alamofire.DataRequest {
     
     @discardableResult
     func responseDecodableObject<T: Decodable>(queue: DispatchQueue? = nil, keyPath: String? = nil, decoder: JSONDecoder = JSONDecoder(), completionHandler: @escaping (DataResponse<T>) -> Void) -> Self {
-        return response(queue: queue, responseSerializer: DataRequest.DecodableObjectSerializer(keyPath, decoder), completionHandler: completionHandler)
+        return response(queue: queue, responseSerializer: DataRequest.decodableObjectSerializer(keyPath, decoder), completionHandler: completionHandler)
     }
 }
-
 
 public enum AlamofireDecodableError: Error {
     case invalidKeyPath

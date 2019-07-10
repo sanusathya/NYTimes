@@ -9,6 +9,7 @@ def pods
   pod 'PromiseKit', '6.7.1'
   pod 'SwiftyBeaver', '1.7.0'
   pod 'NVActivityIndicatorView', '4.7.0'
+  pod 'SwiftLint'
 end
 
 target 'NYTimes' do

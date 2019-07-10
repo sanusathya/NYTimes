@@ -20,7 +20,7 @@ protocol Requestable: URLRequestConvertible {
     @discardableResult
     func request(with responseObject: @escaping (DefaultDataResponse) -> Void) -> DataRequest
     
-    // TODO -- need to creare the below functions to work with Codable
+    // TODO -- need to create the below functions to work with Codable
 //    @discardableResult
 //    func request<T: BaseMappable>(mapToObject object: T?, with responseObject: @escaping (DataResponse<T>) -> Void) -> DataRequest
 
@@ -28,7 +28,7 @@ protocol Requestable: URLRequestConvertible {
 //    func request<T: BaseMappable>(with responseArray: @escaping (DataResponse<[T]>) -> Void) -> DataRequest
     
     @discardableResult
-    func request<T:Decodable>(with responseObject:  @escaping (DataResponse<T>) -> Void) -> DataRequest
+    func request<T: Decodable>(with responseObject: @escaping (DataResponse<T>) -> Void) -> DataRequest
 }
 
 extension Requestable {

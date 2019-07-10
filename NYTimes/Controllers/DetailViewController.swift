@@ -10,18 +10,13 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    var article: Article? {
-        didSet {
-            configureView()
-        }
-    }
+    var article: Article?
     
     @IBOutlet weak var labelTitle: UILabel?
     @IBOutlet weak var labelAuthor: UILabel?
     @IBOutlet weak var labelPublishedDate: UILabel?
     @IBOutlet weak var labelAbstract: UILabel?
     @IBOutlet weak var imageViewLargeThumbnail: UIImageView?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
