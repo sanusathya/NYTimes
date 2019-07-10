@@ -7,8 +7,6 @@
 //
 
 import Alamofire
-import ObjectMapper
-import AlamofireObjectMapper
 
 protocol Requestable: URLRequestConvertible {
     
@@ -22,14 +20,15 @@ protocol Requestable: URLRequestConvertible {
     @discardableResult
     func request(with responseObject: @escaping (DefaultDataResponse) -> Void) -> DataRequest
     
-    @discardableResult
-    func request<T: BaseMappable>(mapToObject object: T?, with responseObject: @escaping (DataResponse<T>) -> Void) -> DataRequest
+    // TODO -- need to creare the below functions to work with Codable
+//    @discardableResult
+//    func request<T: BaseMappable>(mapToObject object: T?, with responseObject: @escaping (DataResponse<T>) -> Void) -> DataRequest
+
+//    @discardableResult
+//    func request<T: BaseMappable>(with responseArray: @escaping (DataResponse<[T]>) -> Void) -> DataRequest
     
     @discardableResult
-    func request<T: BaseMappable>(with responseObject: @escaping (DataResponse<T>) -> Void) -> DataRequest
-    
-    @discardableResult
-    func request<T: BaseMappable>(with responseArray: @escaping (DataResponse<[T]>) -> Void) -> DataRequest
+    func request<T:Decodable>(with responseObject:  @escaping (DataResponse<T>) -> Void) -> DataRequest
 }
 
 extension Requestable {
@@ -91,20 +90,10 @@ extension Requestable {
     func request(with responseObject: @escaping (DefaultDataResponse) -> Void) -> DataRequest {
         return ServiceManager.shared.request(self).response(completionHandler: responseObject).validateErrors()
     }
-    
+
     @discardableResult
-    func request<T: BaseMappable>(mapToObject object: T?, with responseObject: @escaping (DataResponse<T>) -> Void) -> DataRequest {
-        return ServiceManager.shared.request(self).responseObject(mapToObject: object, completionHandler: responseObject).validateErrors()
-    }
-    
-    @discardableResult
-    func request<T: BaseMappable>(with responseObject: @escaping (DataResponse<T>) -> Void) -> DataRequest {
-        return ServiceManager.shared.request(self).responseObject(completionHandler: responseObject).validateErrors()
-    }
-    
-    @discardableResult
-    func request<T: BaseMappable>(with responseArray: @escaping (DataResponse<[T]>) -> Void) -> DataRequest {
-        return ServiceManager.shared.request(self).responseArray(completionHandler: responseArray).validateErrors()
+    func request<T: Decodable>(with responseObject: @escaping (DataResponse<T>) -> Void) -> DataRequest {
+        return ServiceManager.shared.request(self).responseDecodableObject(completionHandler: responseObject).validateErrors()
     }
 }
 

@@ -6,13 +6,13 @@
 //  Copyright © 2019 Sanu. All rights reserved.
 //
 
-import ObjectMapper
+import Foundation
 
-class Article: MappableObject {
+class Article: Codable {
 
     var id: Int?
-    var url : URL?
-    var adx_keywords: String?
+    var url : String?
+    var adxKeywords: String?
     var section: String?
     var byline: String?
     var type: String?
@@ -22,10 +22,25 @@ class Article: MappableObject {
     var source: String?
     var media: [Media]?
     
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case url
+        case adxKeywords = "adx_keywords"
+        case section
+        case byline
+        case type
+        case title
+        case abstract
+        case publishedDate = "published_date"
+        case source
+        case media
+    }
+
+    
     var thumbnail: URL? {
         guard let media = media?.first else { return nil }
         if let mediaData = media.mediaMetaData?.first {
-            return mediaData.url
+            return URL(string: mediaData.url ?? "")
         }
         return nil
     }
@@ -33,74 +48,47 @@ class Article: MappableObject {
     var detailedThumbnail: URL? {
         guard let media = media?.first else { return nil }
         if let jumboMediaMetaData = media.mediaMetaData?.filter({$0.format == "superJumbo"}), let jumbo = jumboMediaMetaData.first {
-            return jumbo.url
+            return URL(string: jumbo.url ?? "")
         }
         return nil
-    }
-    
-    override func mapping(map: Map) {
-        super.mapping(map: map)
-        
-        id              <- map["id"]
-        url             <- (map["url"], URLTransform())
-        adx_keywords    <- map["adx_keywords"]
-        section         <- map["section"]
-        byline          <- map["byline"]
-        type            <- map["type"]
-        title           <- map["title"]
-        abstract        <- map["abstract"]
-        publishedDate   <- map["published_date"]
-        source          <- map["source"]
-        media           <- map["media"]
     }
 }
 
 
 extension Article {
     
-    class SectionsResponse: MappableObject {
+    class SectionsResponse: Codable {
         var status: String?
         var copyright: String?
         var numberOfResults: Int?
         var articles: [Article]?
         
-        override func mapping(map: Map) {
-            super.mapping(map: map)
-            
-            status          <- map["status"]
-            copyright       <- map["copyright"]
-            numberOfResults <- map["num_results"]
-            articles        <- map["results"]
+        private enum CodingKeys: String, CodingKey {
+            case status
+            case copyright
+            case numberOfResults = "num_results"
+            case articles = "results"
         }
     }
 }
 
 extension Article {
     
-    class Media: MappableObject {
+    class Media: Codable {
         var type: String?
         var subType: String?
         var mediaMetaData: [MediaMetaData]?
         
-        override func mapping(map: Map) {
-            super.mapping(map: map)
-            
-            type          <- map["status"]
-            subType       <- map["copyright"]
-            mediaMetaData <- map["media-metadata"]
+        private enum CodingKeys: String, CodingKey {
+            case type
+            case subType = "subtype"
+            case mediaMetaData = "media-metadata"
         }
     }
     
-    class MediaMetaData: MappableObject {
-        var url: URL?
+    class MediaMetaData: Codable {
+        var url: String?
         var format: String?
-        
-        override func mapping(map: Map) {
-            super.mapping(map: map)
-            
-            url          <- (map["url"], URLTransform())
-            format       <-  map["format"]
-        }
     }
 }
 
