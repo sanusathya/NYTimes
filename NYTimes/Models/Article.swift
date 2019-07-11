@@ -11,7 +11,7 @@ import Foundation
 class Article: Codable {
 
     var id: Int?
-    var url: String?
+    var url: URL?
     var adxKeywords: String?
     var section: String?
     var byline: String?
@@ -38,16 +38,16 @@ class Article: Codable {
     
     var thumbnail: URL? {
         guard let media = media?.first else { return nil }
-        if let mediaData = media.mediaMetaData?.first {
-            return URL(string: mediaData.url ?? "")
+        if let standardThumbnail = media.mediaMetaData?.filter({$0.format == .standardThumbnail}), let thumbnail = standardThumbnail.first {
+            return thumbnail.url
         }
         return nil
     }
     
     var detailedThumbnail: URL? {
         guard let media = media?.first else { return nil }
-        if let jumboMediaMetaData = media.mediaMetaData?.filter({$0.format == "superJumbo"}), let jumbo = jumboMediaMetaData.first {
-            return URL(string: jumbo.url ?? "")
+        if let jumboMediaMetaData = media.mediaMetaData?.filter({$0.format == .mediumThreeByTwo440}), let jumbo = jumboMediaMetaData.first {
+            return jumbo.url
         }
         return nil
     }
@@ -85,8 +85,24 @@ extension Article {
     }
     
     class MediaMetaData: Codable {
-        var url: String?
-        var format: String?
+        var url: URL?
+        var format = MultimediaFormat.unknown
+    }
+}
+
+extension Article {
+    enum MultimediaFormat: String, Codable {
+        case square = "square320"
+        case large = "Large"
+        case jumbo = "Jumbo"
+        case superJumbo = "superJumbo"
+        case squareLarge = "square640"
+        case standardThumbnail = "Standard Thumbnail"
+        case largeThumbnail = "Large Thumbnail"
+        case normal = "Normal"
+        case mediumThreeByTwo210 = "mediumThreeByTwo210"
+        case mediumThreeByTwo440 = "mediumThreeByTwo440"
+        case unknown = "unknown"
     }
 }
 

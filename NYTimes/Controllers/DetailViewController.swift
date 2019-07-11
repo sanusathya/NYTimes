@@ -34,7 +34,7 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func buttonActionViewMore(_ sender: Any) {
-        guard let article = article, let urlString = article.url, let url = URL(string: urlString)  else { return }
+        guard let article = article, let url = article.url else { return }
         UIApplication.shared.open(url)
     }
 }

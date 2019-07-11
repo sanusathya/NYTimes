@@ -40,7 +40,7 @@ extension ServiceManager {
 extension ServiceManager {
     struct API {
         static var baseURl: URL {
-            return URL(string: "http://api.nytimes.com") ?? URL(fileURLWithPath: "http://api.nytimes.com")
+            return URL(string: "https://api.nytimes.com") ?? URL(fileURLWithPath: "https://api.nytimes.com")
         }
     }
 }

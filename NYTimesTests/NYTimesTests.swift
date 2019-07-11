@@ -10,6 +10,21 @@ import XCTest
 @testable import NYTimes
 
 class NYTimesTests: XCTestCase {
+    
+    func testViewControllerAvailability() {
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        XCTAssertNotNil(storyBoard)
+        
+        let masterViewController = storyBoard.instantiateViewController(withIdentifier: MasterViewController.identifier)
+        XCTAssertNotNil(masterViewController)
+        
+        let detailViewController = storyBoard.instantiateViewController(withIdentifier: DetailViewController.identifier)
+        XCTAssertNotNil(detailViewController)
+        
+        let articleTypeViewController = storyBoard.instantiateViewController(withIdentifier: ArticleTypeViewController.identifier)
+        XCTAssertNotNil(articleTypeViewController)
+    }
 
     func testLoadMostViewedAPIForAllSections() {
         
